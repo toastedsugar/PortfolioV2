@@ -18,7 +18,7 @@ export default function Navbar() {
       <div className="container mx-auto py-4 flex flex-row justify-between">
 
         <div className="flex">
-          <Link href="/" className="font-montserrat font-thin text-2xl transition ease-in-out hover:scale-110 duration-100">Poop</Link>
+          <Link href="/" className="font-montserrat font-thin text-2xl transition ease-in-out hover:scale-110 duration-100">DB</Link>
         </div>
 
         <ul className={`font-raleway `}>
