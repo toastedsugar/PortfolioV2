@@ -14,8 +14,8 @@ export default function MobileNavbar() {
     <nav className="sticky top-0 px-5 md:px-20 lg:px-32 bg-zinc-900 w-full">
       <div className="container mx-auto py-4 flex flex-row justify-between">
         <Brand />
-        <div onClick={toggleNav} >
-          {showNav ? <CloseRoundedIcon /> : <MenuRoundedIcon />}
+        <div onClick={toggleNav} className="fixed right-8 sm:right-24 md:right-30 pt-3">
+          {showNav ? <CloseRoundedIcon className="right-8" /> : <MenuRoundedIcon />}
         </div>
         {showNav && <Overlay showNav={showNav} setShowNav={setShowNav} />}
       </div>

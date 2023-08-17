@@ -25,11 +25,11 @@ export default function Navbar({showNav, setShowNav}: navbarProps) {
     <nav className="bg-black h-screen w-72">
       <div className="container py-8 px-8">
         {/* Brand */}
-        <div className="py-12 border-b border-zinc-600">
+        <div className="py-12 lg:py-24 border-b border-zinc-800">
           <Brand />
         </div>
         {/* Page links */}
-        <ul className="font-raleway py-12 border-b border-zinc-600">
+        <ul className="font-raleway py-20 mx-4 border-b border-zinc-800">
           {links.map(link => (
             <Link href={link.link} key={link.id} onClick={()=>{if (setShowNav) setShowNav(false)}}>
               <li className="py-1 mb-4 font-semibold text-lg transition ease-in-out hover:scale-110 duration-100">
@@ -39,11 +39,11 @@ export default function Navbar({showNav, setShowNav}: navbarProps) {
           ))}
         </ul>
         {/* Socials */}
-        <ul className="flex flex-row justify-between mt-12 mx-6 bottom-0">
+        <ul className="flex flex-row justify-between mt-32 mx-12 bottom-0">
           {socials.map(social => (
             <Link key={social.id} href={social.link}>
               <li>
-                <Image src={social.icon} alt={social.name} width={50} height={50}/>
+                <Image src={social.icon} alt={social.name} width={40} height={40}/>
               </li>
             </Link>
           ))}

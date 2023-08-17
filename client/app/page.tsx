@@ -5,22 +5,21 @@ export default function Home() {
     <div>
       {/* Hero section*/}
       <section className="">
-        <p>home</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus adipisci unde ullam fugiat quos voluptatem molestias aperiam harum corrupti rerum laborum labore, sapiente at fuga maxime! Velit repellendus repudiandae laboriosam?</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus adipisci unde ullam fugiat quos voluptatem molestias aperiam harum corrupti rerum laborum labore, sapiente at fuga maxime! Velit repellendus repudiandae laboriosam?</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus adipisci unde ullam fugiat quos voluptatem molestias aperiam harum corrupti rerum laborum labore, sapiente at fuga maxime! Velit repellendus repudiandae laboriosam?</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus adipisci unde ullam fugiat quos voluptatem molestias aperiam harum corrupti rerum laborum labore, sapiente at fuga maxime! Velit repellendus repudiandae laboriosam?</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus adipisci unde ullam fugiat quos voluptatem molestias aperiam harum corrupti rerum laborum labore, sapiente at fuga maxime! Velit repellendus repudiandae laboriosam?</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus adipisci unde ullam fugiat quos voluptatem molestias aperiam harum corrupti rerum laborum labore, sapiente at fuga maxime! Velit repellendus repudiandae laboriosam?</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus adipisci unde ullam fugiat quos voluptatem molestias aperiam harum corrupti rerum laborum labore, sapiente at fuga maxime! Velit repellendus repudiandae laboriosam?</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus adipisci unde ullam fugiat quos voluptatem molestias aperiam harum corrupti rerum laborum labore, sapiente at fuga maxime! Velit repellendus repudiandae laboriosam?</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus adipisci unde ullam fugiat quos voluptatem molestias aperiam harum corrupti rerum laborum labore, sapiente at fuga maxime! Velit repellendus repudiandae laboriosam?</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus adipisci unde ullam fugiat quos voluptatem molestias aperiam harum corrupti rerum laborum labore, sapiente at fuga maxime! Velit repellendus repudiandae laboriosam?</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus adipisci unde ullam fugiat quos voluptatem molestias aperiam harum corrupti rerum laborum labore, sapiente at fuga maxime! Velit repellendus repudiandae laboriosam?</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus adipisci unde ullam fugiat quos voluptatem molestias aperiam harum corrupti rerum laborum labore, sapiente at fuga maxime! Velit repellendus repudiandae laboriosam?</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus adipisci unde ullam fugiat quos voluptatem molestias aperiam harum corrupti rerum laborum labore, sapiente at fuga maxime! Velit repellendus repudiandae laboriosam?</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus adipisci unde ullam fugiat quos voluptatem molestias aperiam harum corrupti rerum laborum labore, sapiente at fuga maxime! Velit repellendus repudiandae laboriosam?</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus adipisci unde ullam fugiat quos voluptatem molestias aperiam harum corrupti rerum laborum labore, sapiente at fuga maxime! Velit repellendus repudiandae laboriosam?</p>
+        {/* Hero Section */}
+        <div className='border-b lg:border-zinc-800'>
+        <h2>Hello, I'm Rohan</h2>
+        <h3>I'm a Software Developer</h3>
+        <p>I like to make clean and creative looking websites</p>
+
+        </div>
+        {/* Skills */}
+        <div className='border-b lg:border-zinc-800'>
+          <h2>Skills</h2>
+        </div>
+        {/* Selected Projects */}
+        <div className='border-b lg:border-zinc-800'>
+          <h2>Selected Websites</h2>
+        </div>
       </section>
     </div>
   )
