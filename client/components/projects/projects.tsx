@@ -7,7 +7,8 @@ import Image from 'next/image';
 import axios from 'axios';
 import ProjectSkeleton from './projectSkeleton';
 //import { getPosts, getImage } from "@/lib/contentfulEndpoints";
-import { getProjects, getImage } from "@/lib/strapiEndpoints";
+import { getProjects, getFeaturedProjects, getImage } from "@/lib/strapiEndpoints";
+import ProjectError from './projectError';
 
 
 type PostType = {
@@ -28,42 +29,8 @@ export default function Projects({ featured }: ProjectsProps) {
     const [posts, setPosts] = useState<PostType[]>([])
 
     useEffect(() => {
-        /* Contentful data fetching
         const fetchData = async () => {
-            const data = await axios.get(getPosts)
-                .then((response) => {
-                    console.log(response.data.items);
-
-                    // Clean up post data to match PostType
-                    let posts: PostType[] = []
-
-                    response.data.items.map((item: any) => {
-                        const post = {
-                            id: item.sys.id,
-                            title: item.fields.title,
-                            featured: item.fields.featured,
-                            slug: item.fields.slug,
-                            imageID: item.fields.image.sys.id,
-                        }
-                        
-                        posts.push(post)
-                    })
-
-                    // Save the post data to state
-                    console.log(posts)
-                    setPosts(posts)
-                })
-                .catch((error) => {
-                    //console.log(getPosts)
-                    console.log(error)
-                    setError(true)
-                })
-        }
-        fetchData();
-        */
-
-        const fetchData = async () => {
-            const data = await axios.get(getProjects, {headers:{Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_KEY}`}})
+            const data = await axios.get(featured ? getFeaturedProjects : getProjects, { headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_KEY}` } })
                 .then((response) => {
                     console.log(response.data.data)
 
@@ -79,7 +46,7 @@ export default function Projects({ featured }: ProjectsProps) {
                             imageURL: getImage(item.attributes.Image.data.attributes.url),
                             tags: item.attributes.Tags.toLowerCase().split(','),
                         }
-                        
+                        console.log(post)
                         posts.push(post)
                     })
 
@@ -94,14 +61,6 @@ export default function Projects({ featured }: ProjectsProps) {
         }
         fetchData()
     }, [])
-
-
-
-    function showError() {
-        return (
-            <div>Error Loading Projects!</div>
-        )
-    }
 
     function showCards() {
         return posts.map((post) => (
@@ -120,10 +79,12 @@ export default function Projects({ featured }: ProjectsProps) {
                         width={400}
                         height={400}
                         objectFit='cover'
+                        quality={25}
+                        priority={true}
                     />
                     <ul className='flex flex-row px-4 gap-2'>
-                        {post.tags.map(tag =>(
-                            <li className='font-raleway font-bold text-xs bg-black py-1 px-3 rounded-full'>
+                        {post.tags.map(tag => (
+                            <li className='font-raleway font-bold text-xs bg-black py-1 px-4 rounded-full'>
                                 {tag}
                             </li>
                         ))}
@@ -137,7 +98,7 @@ export default function Projects({ featured }: ProjectsProps) {
 
     return (
         <>
-            {error && showError()}
+            {error && <ProjectError />}
             <Suspense fallback={<ProjectSkeleton />}>
                 {/** Set layout for the projects here */}
                 <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4'>

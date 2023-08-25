@@ -1,4 +1,14 @@
 @tailwind base;
+
+@layer base {
+  h2 {
+    @apply text-2xl font-raleway font-semibold pl-2 mb-6 mt-8;
+  }
+  section {
+    @apply border-b lg:border-zinc-800 pb-16
+  }
+}
+
 @tailwind components;
 @tailwind utilities;
 
