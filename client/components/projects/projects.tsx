@@ -78,7 +78,6 @@ export default function Projects({ featured }: ProjectsProps) {
                         alt="Project Image"
                         width={400}
                         height={400}
-                        objectFit='cover'
                         quality={25}
                         priority={true}
                     />
