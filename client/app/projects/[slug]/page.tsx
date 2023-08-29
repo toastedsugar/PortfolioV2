@@ -7,8 +7,10 @@ import blurIMG from '@/public/blur.jpg'
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown'
 import { getProjectBySlug, getImage } from "@/lib/strapiEndpoints";
-import ProjectError from '@/components/projects/projectError';
+import Error from '@/components/Error';
 import style from './markdown-styles.module.css'
+import GitHubIcon from '@mui/icons-material/GitHub';
+import InsertLinkIcon from '@mui/icons-material/InsertLink';
 
 type PostType = {
     id: String,
@@ -67,8 +69,15 @@ export default function Project({ params, id }: PostProps) {
         fetchData()
     }, [])
 
+    const additionalInfo = [
+        { name: 'Source Code', icon: <GitHubIcon /> },
+        { name: 'Website Demo', icon: <InsertLinkIcon /> }
+    ]
+
     return (
         <div className='flex flex-col md:flex-row gap-3 rounded-xl'>
+            
+            {/** Post content */}
             <div className='bg-zinc-900 md:w-2/3 rounded-xl'>
                 {post?.imageURL ? (
                     <Image
@@ -90,6 +99,7 @@ export default function Project({ params, id }: PostProps) {
                         alt="Loading Image"
                     />
                 )}
+                {error && <Error errorMsg="Failed to load project!!"/>}
                 <div className='px-6 pb-6'>
                     <h4 className='font-raleway font-semibold text-3xl mb-4'>
                         {post?.title}
@@ -97,16 +107,26 @@ export default function Project({ params, id }: PostProps) {
                     <ReactMarkdown children={post?.content} className={style.reactMarkdown} />
                 </div>
             </div>
+            {/** Right column container */}
             <div className='flex flex-col flex-none gap-3 h-1/2 md:w-1/3'>
+                {/** Additional information */}
+                {additionalInfo.map((item) => (
 
-                <div className='bg-zinc-900 p-4 rounded-xl'>
-                    <p className='font-raleway font-semibold text-xl mb-2'>More Details</p>
-                    <ul className='flex flex-row flex-wrap'>
-                        {post?.tags.map(tag => (
-                            <li key={tag as any} className='font-raleway font-bold text-xs bg-black py-1 px-4 m-1 rounded-full'>{tag}</li>
-                        ))}
-                    </ul>
-                </div>
+                    <div key={item.name as any} className='bg-zinc-900 p-4 rounded-xl'>
+                        {post?.repository ? (
+                            <Link href={post.repository as any} className='flex flex-row gap-6'>
+                                {item.icon}
+                                <p>{item.name}</p>
+                            </Link>
+                        ) : (
+                            <div className='flex flex-row gap-6 text-zinc-700'>
+                                {item.icon}
+                                <p>{item.name}</p>
+                            </div>
+                        )}
+                    </div>
+                ))}
+                {/** Tags */}
                 <div className='bg-zinc-900  p-4 rounded-xl'>
                     <p className='font-raleway font-semibold text-xl mb-2'>Tags</p>
                     <ul className='flex flex-row flex-wrap'>

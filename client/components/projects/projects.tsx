@@ -8,8 +8,8 @@ import axios from 'axios';
 import ProjectSkeleton from './projectSkeleton';
 //import { getPosts, getImage } from "@/lib/contentfulEndpoints";
 import { getProjects, getFeaturedProjects, getImage } from "@/lib/strapiEndpoints";
-import ProjectError from './projectError';
-
+import Error from '../Error';
+import blurIMG from '@/public/blur.jpg'
 
 type PostType = {
     id: String,
@@ -72,18 +72,29 @@ export default function Projects({ featured }: ProjectsProps) {
                     <h3 className='text-lg font-raleway font-semibold pl-2 mb-2'>
                         {post.title}
                     </h3>
-                    <Image
-                        className='rounded-xl h-48 object-cover mb-3'
-                        src={post.imageURL}
-                        alt="Project Image"
-                        width={400}
-                        height={400}
-                        quality={25}
-                        priority={true}
-                    />
+                    {post?.imageURL ? (
+                        <Image
+                            className='rounded-xl h-48 object-cover mb-3'
+                            src={post.imageURL}
+                            width={400}
+                            height={400}
+                            quality={25}
+                            priority={true}
+                            alt="Project Image"
+                        />
+                    ) : (
+                        <Image
+                            className='rounded-xl h-48 object-cover mb-3'
+                            src={blurIMG}
+                            width={400}
+                            height={400}
+                            quality="1"
+                            alt="Loading Image"
+                        />
+                    )}
                     <ul className='flex flex-row px-4 gap-2'>
                         {post.tags.map(tag => (
-                            <li className='font-raleway font-bold text-xs bg-black py-1 px-4 rounded-full'>
+                            <li key={tag as any} className='font-raleway font-bold text-xs bg-black py-1 px-4 rounded-full'>
                                 {tag}
                             </li>
                         ))}
@@ -97,7 +108,7 @@ export default function Projects({ featured }: ProjectsProps) {
 
     return (
         <>
-            {error && <ProjectError />}
+            {error && <Error errorMsg="Failed to load Projects!!" />}
             <Suspense fallback={<ProjectSkeleton />}>
                 {/** Set layout for the projects here */}
                 <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4'>
