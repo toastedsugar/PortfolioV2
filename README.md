@@ -1,18 +1,28 @@
 ## PortfolioV2
-The second iteration of my portfolio. My main issue with the original application was the difficulty in adding new projects to it. Since I stored all my data inside of a JSON file inside the source code, I would have to update the source code in order to make any changes to the website. This is incredibly frustrating to deal with, since it's a very time consuming process that involves modifying the source code and then redeploying the application through my AWS server. This time, I wanted to have some sort of cloud based data storage so I can make changes without messing with the app itself.
+The second iteration of my portfolio. I created my original one right after I learned how to create traditional MVC websites, so I figured it was a good time to show off my react skills and make a new one from scratch with better performance and more features
 
-I was originally going to use a headless CMS, but then some lunatic on Reddit suggested that I could use Google Sheets as a very rudimentary CMS. Since I am an idiot myself, I decided to look into it futher. This blog provides good information on how I can get started.
+This website is built using the following technologies:
+ - NextJS
+ - Tailwind CSS
+ - Strapi
+ - Hosted on AWS via Nginx reverse proxy
 
-https://www.reddit.com/r/webdev/comments/mk8vrx/comment/guji4j6/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
-https://blog.openreplay.com/build-a-blog-with-google-sheets-as-a-headless-cms/
+ This tutorial was a huge help actually making tailwind work: https://www.youtube.com/watch?v=4zHNGNCIezY
 
-## Content Hosting
-Since all the content is stored in a single spreadsheet cell as raw text, I needed some way to differentiate the different types of content. It seems like writing the content in markdown and using a react library in the frontend to actually render the content is the best way to go about this.
+Inspiriation provided by:
+ - https://dev.to/scrimba/10-minimal-portfolio-examples-for-web-developers-who-arent-good-at-design-40gj
+ - https://michaelandreuzza.com/
+ - https://portfolio2022.desertblossoms.net/
 
-I decided to host the images on google drive as well. It was pretty difficult getting the actual images to render in HTML, they need to have a specific format
+My main issue with the original application was the difficulty in adding new projects. Since I stored all my data inside of a JSON file inside the source code, I would have to redeploy the application whenever I would want to make a change, which is as frustrating as it sounds. This time, I wanted to have some sort of cloud based data storage so I can make changes without messing with the app itself.
 
-https://drive.google.com/uc?export=<IMAGE_ID>
+Accessiblity features
 
-## Frontend
-Gatsby + Foundation CSS
 
+Layout
+
+Fonts
+Trying to use the @import to get google fonts wasn't working for whatever reason. I ended up having to download the fonts and using them locally. It took forever to get working. Icons came from MUI.
+
+Image handling
+I needed to create loaders for the image, otherwise the app would hang for about a full second before rendering the new page

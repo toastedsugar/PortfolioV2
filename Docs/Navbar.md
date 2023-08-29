@@ -1,0 +1,1 @@
+I was very proud of the very simple toggle logic I created to hide the contents of the navbar when it isn't selected. Most tutorials and examples I found online had two separate 
