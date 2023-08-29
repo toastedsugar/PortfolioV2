@@ -32,7 +32,7 @@ function Overlay({showNav, setShowNav}: overlayProps) {
   return (
     <div>
 
-      <div className={`fixed top-0 left-0 z-30`}>
+      <div className={`fixed top-0 left-0 z-30 `}>
         <Navbar showNav={showNav} setShowNav={setShowNav} />
       </div>
 

@@ -27,10 +27,9 @@ export default function Home() {
       {/* Hero Section */}
       <section>
         <div className='w-3/4 md:w-3/5'>
-
-          <h2>A Web Developer with an interest in creating clean and minimalistic websites</h2>
-          <p className='text-zinc-300 px-6'>
-            Hey, I'm Rohan, a Software Developer based in California. I'm a fresh graduate looking to expand my knowledge and hone my skills at a position on the cutting edge of technology
+          <h2 className='text-2xl md:text-3xl'>A Software Developer with an interest in creating clean and minimalistic applications</h2>
+          <p className='md:text-lg text-zinc-300 px-6'>
+            Hey I'm Rohan, a Software Developer based in California. I'm a fresh Systems Programming graduate looking to expand my knowledge and hone my skills at a position on the cutting edge of technology
           </p>
         </div>
       </section>
@@ -49,7 +48,7 @@ export default function Home() {
       </section>
 
       {/* Selected Projects */}
-      <section className='border-b lg:border-zinc-800'>
+      <section className='border-0'>
         <h2 className="">Featured Projects</h2>
         <Projects featured={true} />
       </section>
