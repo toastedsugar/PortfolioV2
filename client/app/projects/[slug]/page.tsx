@@ -23,15 +23,15 @@ type PostType = {
     repository: String,
     demoLink: String,
 }
-
+/*
 type PostProps = {
     params: {
         slug: String,
     },
     id: String,
 }
-
-export default function Project({ params, id }: PostProps) {
+*/
+export default function Project({ params, id }: any) {
     const [error, setError] = useState<Boolean>(false)
     const [post, setPost] = useState<PostType>()
 
