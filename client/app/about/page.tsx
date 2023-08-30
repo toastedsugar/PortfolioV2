@@ -61,6 +61,7 @@ export default function About() {
 
                     {education.map((item) => (
                         <TimelineItem
+                            key={item.title as any}
                             title={item.title}
                             subtitle={item.subtitle}
                             location={item.location}
@@ -78,6 +79,7 @@ export default function About() {
 
                         {history.map((item) => (
                             <TimelineItem
+                                key={item.title as any}
                                 title={item.title}
                                 subtitle={item.subtitle}
                                 location={item.location}

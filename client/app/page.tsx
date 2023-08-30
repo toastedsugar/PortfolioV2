@@ -29,7 +29,7 @@ export default function Home() {
         <div className='w-3/4 md:w-3/5'>
           <h2 className='text-2xl md:text-3xl'>A Software Developer with an interest in creating clean and minimalistic applications</h2>
           <p className='md:text-lg text-zinc-300 px-6'>
-            Hey I'm Rohan, a Software Developer based in California. I'm a fresh Systems Programming graduate looking to expand my knowledge and hone my skills at a position on the cutting edge of technology
+            Hey I&apos;m Rohan, a Software Developer based in California. I&apos;m a fresh Systems Programming graduate looking to expand my knowledge and hone my skills at a position on the cutting edge of technology
           </p>
         </div>
       </section>
@@ -39,7 +39,7 @@ export default function Home() {
         <h2>Skills</h2>
         <div className='flex flex-row flex-wrap gap-4 px-4'>
           {skills.map((skill) => (
-            <p className='bg-zinc-900 font-semibold px-6 py-3 rounded-lg'>
+            <p key={skill.name as any} className='bg-zinc-900 font-semibold px-6 py-3 rounded-lg'>
               {skill.name}
             </p>
 
