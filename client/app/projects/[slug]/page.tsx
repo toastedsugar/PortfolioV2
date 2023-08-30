@@ -76,7 +76,7 @@ export default function Project({ params, id }: PostProps) {
 
     return (
         <div className='flex flex-col md:flex-row gap-3 rounded-xl'>
-            
+
             {/** Post content */}
             <div className='bg-zinc-900 md:w-2/3 rounded-xl'>
                 {post?.imageURL ? (
@@ -99,12 +99,15 @@ export default function Project({ params, id }: PostProps) {
                         alt="Loading Image"
                     />
                 )}
-                {error && <Error errorMsg="Failed to load project!!"/>}
+                {error && <Error errorMsg="Failed to load project!!" />}
                 <div className='px-6 pb-6'>
                     <h4 className='font-raleway font-semibold text-3xl mb-4'>
                         {post?.title}
                     </h4>
-                    <ReactMarkdown children={post?.content} className={style.reactMarkdown} />
+                    <ReactMarkdown className={style.reactMarkdown} >
+                        {post?.content}
+                    </ReactMarkdown>
+
                 </div>
             </div>
             {/** Right column container */}
