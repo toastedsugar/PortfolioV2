@@ -4,7 +4,7 @@ The second iteration of my portfolio. I created my original one right after I le
 This website is built using the following technologies:
  - NextJS
  - Tailwind CSS
- - Strapi
+ - Contentful
  - Hosted on AWS via Nginx reverse proxy
 
  This tutorial was a huge help actually making tailwind work: https://www.youtube.com/watch?v=4zHNGNCIezY
