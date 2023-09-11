@@ -7,7 +7,8 @@ import Image from 'next/image';
 import axios from 'axios';
 import ProjectSkeleton from './projectSkeleton';
 //import { getPosts, getImage } from "@/lib/contentfulEndpoints";
-import { getProjects, getFeaturedProjects, getImage } from "@/lib/strapiEndpoints";
+//import { getProjects, getFeaturedProjects, getImage } from "@/lib/strapiEndpoints";
+import { getGooglePosts, getGoogleImage } from "@/lib/GoogleEndpoints";
 import Error from '../Error';
 import blurIMG from '@/public/blur.jpg'
 
@@ -28,31 +29,83 @@ export default function Projects({ featured }: ProjectsProps) {
     const [error, setError] = useState<Boolean>(false)
     const [posts, setPosts] = useState<PostType[]>([])
 
+    /* Strapi data
+        useEffect(() => {
+            const fetchData = async () => {
+                const data = await axios.get(featured ? getFeaturedProjects : getProjects, { headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_KEY}` } })
+                    .then((response) => {
+                        console.log(response.data.data)
+    
+                        // Clean up post data to match PostType
+                        let posts: PostType[] = []
+    
+                        response.data.data.map((item: any) => {
+                            const post = {
+                                id: item.id,
+                                title: item.attributes.Title,
+                                slug: item.attributes.Slug,
+                                imageName: item.attributes.Image.data.attributes.name,
+                                imageURL: getImage(item.attributes.Image.data.attributes.url),
+                                tags: item.attributes.Tags.toLowerCase().split(','),
+                            }
+                            console.log(post)
+                            posts.push(post)
+                        })
+    
+                        // Save the post data to state
+                        console.log(posts)
+                        setPosts(posts)
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                        setError(true)
+                    })
+            }
+            fetchData()
+        }, [])
+    */
+
+    function generatePost(item:any){
+        //console.log(item)
+        const post: PostType = {
+            id: item[0],
+            title: item[1],
+            slug: item[2],
+            imageName: item[8],
+            imageURL: item[7],
+            tags: item[4].split(','),
+        }
+        //console.log(post)
+        return post
+    }
+
+
     useEffect(() => {
         const fetchData = async () => {
-            const data = await axios.get(featured ? getFeaturedProjects : getProjects, { headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_KEY}` } })
+            const data = await axios.get(getGooglePosts)
                 .then((response) => {
-                    console.log(response.data.data)
+                    //console.log(response.data.values)
 
-                    // Clean up post data to match PostType
                     let posts: PostType[] = []
+                    const sliced = response.data.values.slice(1);       // Removing the first element of the response data
+                    //console.log(sliced)
 
-                    response.data.data.map((item: any) => {
-                        const post = {
-                            id: item.id,
-                            title: item.attributes.Title,
-                            slug: item.attributes.Slug,
-                            imageName: item.attributes.Image.data.attributes.name,
-                            imageURL: getImage(item.attributes.Image.data.attributes.url),
-                            tags: item.attributes.Tags.toLowerCase().split(','),
-                        }
-                        console.log(post)
-                        posts.push(post)
-                    })
-
-                    // Save the post data to state
+                    if (featured == true) {
+                        // Extract featured posts from response data
+                        sliced.map((item: any) => {
+                            //console.log(item)
+                            if (item[3] == "TRUE") {
+                                posts.push(generatePost(item))
+                            }
+                        }) 
+                    } else {
+                        // Us all posts from response data
+                        sliced.map((item: any) => {
+                                posts.push(generatePost(item))
+                        })
+                    }
                     console.log(posts)
-                    setPosts(posts)
+                    setPosts(posts)     // Push posts to state
                 })
                 .catch((error) => {
                     console.log(error)
