@@ -82,12 +82,14 @@ export default function Projects({ featured }: ProjectsProps) {
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await axios.get(getGooglePosts)
-                .then((response) => {
-                    //console.log(response.data.values)
+            try{
 
-                    let posts: PostType[] = []
-                    const sliced = response.data.values.slice(1);       // Removing the first element of the response data
+                const respose = await fetch(getGooglePosts, { cache: 'no-store' })
+                const data = await respose.json()
+                //console.log(data)
+
+                let posts: PostType[] = []
+                    const sliced = data.values.slice(1);       // Removing the first element of the response data
                     //console.log(sliced)
 
                     if (featured == true) {
@@ -106,11 +108,12 @@ export default function Projects({ featured }: ProjectsProps) {
                     }
                     console.log(posts)
                     setPosts(posts)     // Push posts to state
-                })
-                .catch((error) => {
-                    console.log(error)
+            }
+            catch (error) {
+                console.log(error)
                     setError(true)
-                })
+            }
+        
         }
         fetchData()
     }, [])

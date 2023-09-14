@@ -74,6 +74,34 @@ export default function Project({ params, id }: any) {
     useEffect(() => {
         const fetchData = async () => {
             //console.log(params.id)
+
+            try{
+                const response = await fetch(getGooglePost(Number(params.id)), { cache: 'no-store' })
+                const data = await response.json()
+
+                const item = data.values[0]
+                console.log(item)
+
+                const post: PostType = {
+                    id: item[0],
+                    title: item[1],
+                    slug: item[2],
+                    imageName: item[8],
+                    imageURL: item[7],
+                    tags: item[4].toLowerCase().split(','),
+                    content: item[9],
+                    repository: item[5],
+                    demoLink: item[6],
+                }
+                console.log(post)
+                // Save the post data to state
+                setPost(post)
+            }
+            catch (error) {
+                console.log(error)
+                setError(true)
+            }
+            /*
             const data = await axios.get(getGooglePost(Number(params.id)))
             .then((response) => {
                 const item = response.data.values[0]
@@ -98,6 +126,7 @@ export default function Project({ params, id }: any) {
                 console.log(error)
                 setError(true)
             })
+            */
         }
             
             
