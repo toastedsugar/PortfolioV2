@@ -121,7 +121,7 @@ export default function Projects({ featured }: ProjectsProps) {
                 key={post.id as string}
                 className="flex flex-col bg-zinc-900 p-4 rounded-xl hover:contrast-75 h-80"
             >
-                <Link href={`./projects/${post.slug}`}>
+                <Link href={`./projects/${post.id}`}>
                     <h3 className='text-lg font-raleway font-semibold pl-2 mb-2'>
                         {post.title}
                     </h3>

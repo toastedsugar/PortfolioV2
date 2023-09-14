@@ -7,6 +7,7 @@ import blurIMG from '@/public/blur.jpg'
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown'
 import { getProjectBySlug, getImage } from "@/lib/strapiEndpoints";
+import { getGooglePost } from '@/lib/GoogleEndpoints';
 import Error from '@/components/Error';
 import style from './markdown-styles.module.css'
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -34,7 +35,7 @@ type PostProps = {
 export default function Project({ params, id }: any) {
     const [error, setError] = useState<Boolean>(false)
     const [post, setPost] = useState<PostType>()
-
+    /*
     useEffect(() => {
         const fetchData = async () => {
             const data = await axios.get(getProjectBySlug(params.slug), { headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_KEY}` } })
@@ -66,6 +67,40 @@ export default function Project({ params, id }: any) {
                     setError(true)
                 })
         }
+        fetchData()
+    }, [])
+*/
+
+    useEffect(() => {
+        const fetchData = async () => {
+            //console.log(params.id)
+            const data = await axios.get(getGooglePost(Number(params.id)))
+            .then((response) => {
+                const item = response.data.values[0]
+                console.log(item)
+
+                const post: PostType = {
+                    id: item[0],
+                    title: item[1],
+                    slug: item[2],
+                    imageName: item[8],
+                    imageURL: item[7],
+                    tags: item[4].toLowerCase().split(','),
+                    content: item[9],
+                    repository: item[5],
+                    demoLink: item[6],
+                }
+                console.log(post)
+                // Save the post data to state
+                setPost(post)
+            })
+            .catch((error) => {
+                console.log(error)
+                setError(true)
+            })
+        }
+            
+            
         fetchData()
     }, [])
 
