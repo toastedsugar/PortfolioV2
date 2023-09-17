@@ -65,55 +65,57 @@ export default function Projects({ featured }: ProjectsProps) {
         }, [])
     */
 
-    function generatePost(item:any){
+    function generatePost(item: any) {
         //console.log(item)
+        console.log(item[4])
+
         const post: PostType = {
             id: item[0],
             title: item[1],
             slug: item[2],
             imageName: item[8],
             imageURL: item[7],
-            tags: item[4].split(','),
+            tags: item[4] ? item[4].split(','): [""], // if tags is undefined, set it to be an array with one "" element to avoid errorw
         }
-        //console.log(post)
+        //console.log(post.tags)
         return post
     }
 
 
     useEffect(() => {
         const fetchData = async () => {
-            try{
+            try {
 
-                const respose = await fetch(getGooglePosts, { cache: 'no-store' })
-                const data = await respose.json()
+                const response = await fetch(getGooglePosts, { cache: 'no-store' })
+                const data = await response.json()
                 //console.log(data)
 
                 let posts: PostType[] = []
-                    const sliced = data.values.slice(1);       // Removing the first element of the response data
-                    //console.log(sliced)
+                const sliced = data.values.slice(1);       // Removing the first element of the response data
+                console.log(sliced)
 
-                    if (featured == true) {
-                        // Extract featured posts from response data
-                        sliced.map((item: any) => {
-                            //console.log(item)
-                            if (item[3] == "TRUE") {
-                                posts.push(generatePost(item))
-                            }
-                        }) 
-                    } else {
-                        // Us all posts from response data
-                        sliced.map((item: any) => {
-                                posts.push(generatePost(item))
-                        })
-                    }
-                    console.log(posts)
-                    setPosts(posts)     // Push posts to state
+                if (featured == true) {
+                    // Extract featured posts from response data
+                    sliced.map((item: any) => {
+                        //console.log(item)
+                        if (item[3] == "TRUE") {
+                            posts.push(generatePost(item))
+                        }
+                    })
+                } else {
+                    // Us all posts from response data
+                    sliced.map((item: any) => {
+                        posts.push(generatePost(item))
+                    })
+                }
+                console.log(posts)
+                setPosts(posts)     // Push posts to state
             }
             catch (error) {
                 console.log(error)
-                    setError(true)
+                setError(true)
             }
-        
+
         }
         fetchData()
     }, [])
