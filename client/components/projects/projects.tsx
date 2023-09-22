@@ -150,7 +150,7 @@ export default function Projects({ featured }: ProjectsProps) {
                             alt="Loading Image"
                         />
                     )}
-                    <ul className='flex flex-row px-4 gap-2'>
+                    <ul className='flex flex-row gap-2'>
                         {post.tags.map(tag => (
                             <li key={tag as any} className='font-raleway font-bold text-xs bg-black py-1 px-4 rounded-full'>
                                 {tag}
